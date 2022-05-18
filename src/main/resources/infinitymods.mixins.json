@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "tt432.infinitymods.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "infinitymods.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "MixinTitleScreen"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
