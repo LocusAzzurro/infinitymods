@@ -1,7 +1,6 @@
 package tt432.infinitymods;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,11 +21,21 @@ public class TextUtil {
         return ludicrousFormatting(input, sanic, 4.0D, 1, 1);
     }
 
-    static int ticked;
+    static int ticks;
+    static long currentCount;
+
+    static final int startingCount = 449;
 
     @SubscribeEvent
     public static void onEvent(TickEvent.ClientTickEvent event) {
-        ticked++;
+        ticks++;
+        if (ticks < startingCount) currentCount = startingCount;
+        else if (ticks > startingCount && ticks < 5000) currentCount = ticks;
+        else currentCount += Math.random() * currentCount / 100;
+    }
+
+    public static String modCounter(){
+        return (currentCount < Integer.MAX_VALUE) ? String.valueOf(currentCount) : makeFabulous("Infinity");
     }
 
     public static String ludicrousFormatting(String input, ChatFormatting[] colours, double delay, int step, int posstep) {
@@ -35,7 +44,7 @@ public class TextUtil {
             delay = 0.001D;
         }
 
-        int offset = (int)Math.floor(ticked / delay) % colours.length;
+        int offset = (int)Math.floor(ticks / delay) % colours.length;
 
         for(int i = 0; i < input.length(); ++i) {
             char c = input.charAt(i);

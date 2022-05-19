@@ -130,9 +130,16 @@ public abstract class MixinTitleScreen extends Screen {
             BrandingControl.forEachLine(true, true, (brdline, brd) -> {
                 if (brdline == 0) {
                     drawString(p_96739_, this.font,
+                            TextUtil.modCounter() + ChatFormatting.RESET + " mods loaded",
+                            2, this.height - 10,
+                            16777215 | l);
+                    /*
+                    drawString(p_96739_, this.font,
                             TextUtil.makeFabulous("Infinity") + ChatFormatting.RESET + " mods loaded",
                             2, this.height - 10,
                             16777215 | l);
+
+                     */
                 }
                 else {
                     drawString(p_96739_, this.font, brd,
